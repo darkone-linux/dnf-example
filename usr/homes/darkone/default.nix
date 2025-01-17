@@ -1,15 +1,11 @@
-# Chargé par le flake dans la section home-manager
+# A unique user profile
 
-{ ... }:
 {
-  home.username = "darkone";
-  home.homeDirectory = "/home/darkone";
-
+  # Is a nix administrator with additional home environment
   imports = [
-    ./home/git.nix
-    ./home/programs.nix
-    ./home/vim.nix
-    #./home/gtk.nix
+    ./../../../lib/homes/nix-admin
+    ./programs.nix
+    #./gtk.nix
   ];
 
   # This value determines the Home Manager release that your
@@ -21,7 +17,4 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "25.05";
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 }

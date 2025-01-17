@@ -1,9 +1,6 @@
-{
-  imports = [
-    ./../common.nix
-    ./../../users/darkone
-  ];
+# VBOX virtual machine profile
 
+{
   # Darkone modules
   darkone = {
 
@@ -12,8 +9,7 @@
 
     # For advanced user
     user.advanced.enable = true;
-
   };
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "24.05";
 }
