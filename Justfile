@@ -1,7 +1,12 @@
 # dnf-example — consumer Justfile.
-# TODO: optional import (import?) local over global (in nix store)
+#
+# `.dnf/` is a symlink to the framework's `assets` package in the nix store.
+# Bootstrap it once with:
+#   nix run github:darkone-linux/darkone-nixos-framework#init
+# `import?` keeps `just --list` working (showing local recipes only) before
+# the bootstrap runs.
 
-import 'dnf/assets/default.just'
+import? '.dnf/default.just'
 
 # Justfile help
 _default:

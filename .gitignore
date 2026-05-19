@@ -8,3 +8,4 @@ src
 .Trash*
 .gitmodules
 .direnv
+.dnf
