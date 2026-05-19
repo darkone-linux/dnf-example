@@ -21,6 +21,21 @@ usr/               Local overlay
 var/generated/     dnf-generator outputs — committed, do not edit
 ```
 
+## Bootstrap
+
+The framework's Justfile recipes and Rust generator are fetched from the
+nix store, not from a local checkout. Run this once after cloning:
+
+```sh
+# Symlink .dnf -> framework's `assets` derivation (provides default.just)
+nix run github:darkone-linux/darkone-nixos-framework#init
+
+# Drop into a shell that has `dnf-generator` on PATH
+nix develop github:darkone-linux/darkone-nixos-framework
+```
+
+After this, `just --list` shows the full set of framework recipes.
+
 ## Common commands
 
 ```sh
