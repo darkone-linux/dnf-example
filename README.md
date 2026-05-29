@@ -10,7 +10,7 @@ framework. Use the [DNF Boilerplate](https://github.com/darkone-linux/dnf-boiler
 
 ```
 flake.nix          Consumer flake (delegates to dnf)
-Justfile           Recipes (wraps dnf/assets/default.just)
+Justfile           Recipes (wraps dnf/assets/just/project.just)
 etc/config.yaml    Declarative source of truth (hosts, users, network, services)
 usr/               Local overlay
   modules/         Project-specific NixOS modules
