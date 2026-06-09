@@ -15,6 +15,8 @@ network:
     enable: true # Enable tailscale clients in zones
     hostname: "hcs" # Headscale Coordination Server
     domain: "headscale" # headscale.domain.tld
+  matrix: # Alerting bot + rooms (see `just configure-alert-bot`)
+    admin: "darkone" # Human local part invited to the alert rooms
 
 #==============================================================================
 # Networking zones
@@ -139,6 +141,10 @@ users:
 # -> disko: disks description for an auto-installation with disko (only for install)
 # -> services: enable DNF services on this host
 # -> features: enable non-service features on this host
+#      alert class overrides (default derives from the host profile):
+#        "alert-critical"     -> node-down/resource alerts page (incident)
+#        "alert-non-critical" -> alerts only warn
+#        "alert-disabled"     -> emit no node-level alerts at all
 hosts:
 
 #------------------------------------------------------------------------------
@@ -213,7 +219,7 @@ hosts:
     profile: "laptop"
     groups: ["zone-local", "guests"]
     tags: ["local"]
-    features: ["nfs-client"]
+    features: ["nfs-client", "alert-disabled"] # often off: no node alerts
     mac: "f0:1f:af:14:62:a5,bc:82:56:25:b8:45"
 
   # USB key with DNF NixOS
@@ -283,7 +289,7 @@ hosts:
     profile: "lan"
     range: [1, 4]
     groups: ["guests"]
-    features: ["nfs-client", "monitoring-node"]
+    features: ["nfs-client", "monitoring-node", "alert-disabled"] # ephemeral LAN-party hosts
     mac:
       1: "08:00:27:03:bb:21"
       2: "08:00:27:03:bb:22"
