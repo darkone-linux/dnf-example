@@ -1,3 +1,21 @@
+# Host profile for an administration laptop.
+#
+# Host profiles carry NixOS-level options only: hardware, system services,
+# desktop stack. Per-user software (office suite, communication tools, music,
+# media) is home-manager territory and belongs to the user's own file,
+# `usr/users/<login>/default.nix`:
+#
+# ```nix
+# darkone.home.office.enableCommunication = true;
+# darkone.home.music.enable = true;
+# ```
+#
+# :::note[Why the split matters]
+# `darkone.home.*` options are unknown to the NixOS module system: setting them
+# here fails the evaluation with "option does not exist". Same package, two
+# namespaces, and the user file is the one that wins.
+# :::
+
 { lib, config, ... }:
 let
   cfg = config.darkone.host.admin-laptop;
@@ -15,23 +33,14 @@ in
       # Based on laptop framework profile
       host.laptop.enable = true;
 
-      # Advanced user (developper / admin)
-      theme.advanced.enable = true;
-
       # Nix administration features
       admin.nix.enable = true;
 
       # Printers
       #service.printing.enableHpPrinters = true;
 
-      # No email software
-      graphic.office.enableEmail = false;
-
       # Virtualbox
       #graphic.virtualbox.enable = true;
-
-      # Music creation
-      #graphic.music.enable = true;
 
       # Gnome options
       #graphic.gnome.enableDashToDock = true;
