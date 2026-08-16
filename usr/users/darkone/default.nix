@@ -48,7 +48,6 @@ in
     asciidoctor
     aspellDicts.fr
     kdePackages.kdenlive
-    mattermost-desktop
     opencpn
     viking
   ];
