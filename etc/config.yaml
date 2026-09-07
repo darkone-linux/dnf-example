@@ -15,8 +15,8 @@ network:
     enable: true # Enable tailscale clients in zones
     hostname: "hcs" # Headscale Coordination Server
     domain: "headscale" # headscale.domain.tld
-  matrix: # Alerting bot + rooms (see `just configure-alert-bot`)
-    admin: "darkone" # Human local part invited to the alert rooms
+  matrix: # Administrators, alerting bot + rooms (see `just configure-alert-bot`)
+    admins: ["darkone"] # Local parts: bridge + server admins, invited to the alert rooms
 
 #==============================================================================
 # Networking zones
