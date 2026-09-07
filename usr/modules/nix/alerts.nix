@@ -28,8 +28,14 @@
 # :::
 #
 # A silence only covers the `alertname` it names: muting `DiskSpaceLow` on a
-# mount leaves `DiskSpaceCritical` and `DiskWillFillSoon` fully armed on that
-# same mount, so a genuine fill-up still pages.
+# partition leaves `DiskSpaceCritical` and `DiskWillFillSoon` fully armed on
+# that same partition, so a genuine fill-up still pages.
+#
+# :::note[Target a partition, not a mount]
+# Disk rules aggregate on `device`: one alert per partition, however many
+# mountpoints it carries. Filesystem alerts therefore have no `mountpoint`
+# label — a `matchers.mountpoint` would never match.
+# :::
 
 {
   darkone.service.prometheus.alerting.silences = [
@@ -37,7 +43,7 @@
     # {
     #   alert = "DiskSpaceLow";
     #   host = "lan-01";
-    #   matchers.mountpoint = "/mnt/backup";
+    #   matchers.device = "/dev/sdb";
     #   reason = ''
     #     Backup disk deliberately kept near full, so the 15% threshold is
     #     structurally crossed and the alert is permanent. DiskSpaceCritical (5%)
