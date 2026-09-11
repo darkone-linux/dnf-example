@@ -10,7 +10,7 @@ framework. Use the [DNF Boilerplate](https://github.com/darkone-linux/dnf-boiler
 
 ```
 flake.nix          Consumer flake (delegates to dnf)
-Justfile           Recipes (wraps dnf/assets/just/project.just)
+Justfile           Recipes (imports dnf/just/project.just)
 etc/config.yaml    Declarative source of truth (hosts, users, network, services)
 usr/               Local overlay
   modules/         Project-specific NixOS modules
@@ -27,7 +27,7 @@ The framework's Justfile recipes and Rust generator are fetched from the
 nix store, not from a local checkout. Run this once after cloning:
 
 ```sh
-# Symlink .dnf -> framework's `assets` derivation (provides default.just)
+# Symlink dnf -> framework tree in the nix store (provides the just recipes)
 nix run github:darkone-linux/darkone-nixos-framework#init
 
 # Drop into a shell that has `dnf-generator` on PATH
