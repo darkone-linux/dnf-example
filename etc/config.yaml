@@ -17,6 +17,9 @@ network:
     domain: "headscale" # headscale.domain.tld
   matrix: # Administrators, alerting bot + rooms (see `just configure-alert-bot`)
     admins: ["darkone"] # Local parts: bridge + server admins, invited to the alert rooms
+  # fleetUpdate: # fleet-update defaults, overridden by its options (tool defaults shown)
+  #   deploymentOrder: "hcs:gateway:server:[others]:laptop" # One test wave per profile
+  #   criticalProfiles: "hcs:gateway:server" # Failures also reported to the incidents room
 
 #==============================================================================
 # Networking zones
