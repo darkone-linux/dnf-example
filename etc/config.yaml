@@ -15,6 +15,13 @@ network:
     enable: true # Enable tailscale clients in zones
     hostname: "hcs" # Headscale Coordination Server
     domain: "headscale" # headscale.domain.tld
+  smtp: # Outgoing mail relay, password in sops (`smtp/password`)
+    protocol: "submissions"
+    server: "smtp.example.net"
+    port: 465
+    username: "postmaster@example.net"
+    sender: "noreply@example.net"
+    tls: true
   matrix: # Administrators, alerting bot + rooms (see `just configure-alert-bot`)
     admins: ["darkone"] # Local parts: bridge + server admins, invited to the alert rooms
   # fleetUpdate: # fleet-update defaults, overridden by its options (tool defaults shown)
@@ -157,15 +164,16 @@ hosts:
   # Headscale Coordination Server
   - hostname: "hcs"
     name: "Headscale Coordination Server"
-    profile: "headscale"
+    profile: "hcs"
     ipv4:
       external: "222.222.222.222" # External IP = zone "www"
       internal: "100.64.0.2"
     services:
       headscale:
+      idm:         # Identities and SSO (Kanidm)
       vaultwarden:
         description: "Password & Keys"
-      mattermost:
+      matrix:
         description: "Our messaging tool"
     # disko:
     #   profile: "btrfs-1-disk"
@@ -186,10 +194,9 @@ hosts:
     services:
       adguardhome: # Ad-free service
       homepage:    # A page that automatically displays all my services
-      ncps:        # A package cache
-      auth:        # Authentication tool (SSO)
-      users:       # Users management (SSO)
+      harmonia:    # Serves the zone's builds to its hosts
       forgejo:     # A git server
+      prometheus:  # Metrics store, required by monitoring
       monitoring:  # Grafana node-exporter page
 
   # A server - 10.1.1.2
@@ -280,8 +287,9 @@ hosts:
     services:
       adguardhome: # Ad-free service
       homepage:    # A page that automatically displays all my services
-      ncps:        # A package cache
+      harmonia:    # Serves the zone's builds to its hosts
       forgejo:     # A git server
+      prometheus:  # Metrics store, required by monitoring
       monitoring:  # Grafana node-exporter page
       nfs:         # NFS server
 
@@ -289,7 +297,7 @@ hosts:
   - hostname: "lan-%'02s"
     name: "LAN host #%'02s"
     zone: "lan:2.%d"
-    profile: "lan"
+    profile: "desktop"
     range: [1, 4]
     groups: ["guests"]
     features: ["nfs-client", "monitoring-node", "alert-disabled"] # ephemeral LAN-party hosts

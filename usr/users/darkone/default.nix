@@ -19,7 +19,7 @@ in
       enableFun = graphic;
       enableDev = graphic;
       enableScore = graphic;
-      enableBeginner = graphic;
+      enableCreator = graphic;
     };
     games.enableTeenager = graphic;
     office = {
