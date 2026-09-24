@@ -148,7 +148,8 @@ users:
 # -> arch: the host architecture, default is x86_64-linux
 # -> mac: mac addresses of interfaces linked to internal network separated by comma
 # -> zones: key = name of the zone, value is fixed ip (optional)
-# -> disko: disks description for an auto-installation with disko (only for install)
+# -> disko: install-time disk layout: profile + one device per disk of the profile
+#    (/dev/disk/by-id/... recommended); removable once the host is installed
 # -> services: enable DNF services on this host
 # -> features: enable non-service features on this host
 #      alert class overrides (default derives from the host profile):
@@ -177,6 +178,8 @@ hosts:
         description: "Our messaging tool"
     # disko:
     #   profile: "btrfs-1-disk"
+    #   devices:
+    #     main: "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_2TB_S7DNNJ0W000000"
 
 #------------------------------------------------------------------------------
 # Hosts: zone "local"
@@ -221,6 +224,8 @@ hosts:
         icon: "google-photos"
     # disko:
     #   profile: "luks-btrfs-1-disk"
+    #   devices:
+    #     main: "/dev/nvme0n1"
 
   # A laptop - 10.1.2.1
   - hostname: "my-laptop"
@@ -240,6 +245,8 @@ hosts:
     users: ["darkone"]
     # disko:
     #   profile: "luks-btrfs-1-disk"
+    #   devices:
+    #     main: "/dev/sdb"
 
   # 4 identical desktops - 10.1.3.x
   - hostname: "desktop-%'02s"
@@ -308,4 +315,6 @@ hosts:
       4: "08:00:27:03:bb:24"
     disko:
       profile: "ext4-1-disk"
+      devices:
+        main: "/dev/sda"
 

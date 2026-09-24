@@ -15,7 +15,7 @@ etc/config.yaml    Declarative source of truth (hosts, users, network, services)
 usr/               Local overlay
   modules/         Project-specific NixOS modules
   home/            Home Manager overlay
-  machines/<host>/ Per-host artefacts (disko, hardware-configuration, generated-configuration)
+  machines/<host>/ Per-host files: configuration.nix (yours), install/ (frozen), hardware/ (probed)
   users/<login>/   Per-user customisations
   secrets/         SOPS-encrypted secrets (admin-managed, never edited here)
 var/generated/     dnf-generator outputs — committed, do not edit
