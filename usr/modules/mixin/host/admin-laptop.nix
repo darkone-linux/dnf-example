@@ -1,5 +1,9 @@
 # Host profile for an administration laptop.
 #
+# Selected by `profile: "admin-laptop"` in `etc/config.yaml`, like the
+# framework profiles of `dnf/modules/mixin/host/`. No `system.stateVersion`
+# here: it is frozen per host in `usr/machines/<host>/install/state.nix`.
+#
 # Host profiles carry NixOS-level options only: hardware, system services,
 # desktop stack. Per-user software (office suite, communication tools, music,
 # media) is home-manager territory and belongs to the user's own file,
@@ -47,8 +51,5 @@ in
       #graphic.gnome.enableGsConnect = true;
       #graphic.gnome.enableCaffeine = true;
     };
-
-    # Host specific state version
-    system.stateVersion = "24.05";
   };
 }

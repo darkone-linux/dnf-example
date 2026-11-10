@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./nix/alerts.nix
-    ./nix/host/admin-laptop.nix
+    ./alerts.nix
+    ./mixin/host/admin-laptop.nix
   ];
 }
