@@ -1,7 +1,6 @@
 # Specific home manager settings for user alice id:1001 ()
 
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   home.username = "alice"; # DO NOT TOUCH!
   home.stateVersion = "25.11"; # DO NOT TOUCH!
 

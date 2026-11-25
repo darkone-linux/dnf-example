@@ -1,7 +1,6 @@
 # Specific home manager settings for user nix id:65000 ()
 
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   home.username = "nix"; # DO NOT TOUCH!
   home.stateVersion = "25.11"; # DO NOT TOUCH!
 

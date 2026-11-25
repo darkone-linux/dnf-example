@@ -1,7 +1,6 @@
 # Specific home manager settings for user guest-baby id:9003 (guest-baby@darkone.yt)
 
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   home.username = "guest-baby"; # DO NOT TOUCH!
   home.stateVersion = "25.11"; # DO NOT TOUCH!
 
